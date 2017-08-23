@@ -1,0 +1,7 @@
+C:\Users\Administrator\Workspace\pos.machinePractice\src\pos.Machine\obj\Debug\pos.Machine.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Workspace\pos.machinePractice\src\pos.Machine\bin\Debug\pos.Machine.dll
+C:\Users\Administrator\Workspace\pos.machinePractice\src\pos.Machine\bin\Debug\pos.Machine.pdb
+C:\Users\Administrator\Workspace\pos.machinePractice\src\pos.Machine\bin\Debug\Autofac.dll
+C:\Users\Administrator\Workspace\pos.machinePractice\src\pos.Machine\bin\Debug\Autofac.xml
+C:\Users\Administrator\Workspace\pos.machinePractice\src\pos.Machine\obj\Debug\pos.Machine.dll
+C:\Users\Administrator\Workspace\pos.machinePractice\src\pos.Machine\obj\Debug\pos.Machine.pdb
