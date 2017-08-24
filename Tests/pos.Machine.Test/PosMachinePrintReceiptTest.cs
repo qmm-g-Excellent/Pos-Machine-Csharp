@@ -13,8 +13,8 @@ namespace pos.Machine.Test
             IContainer container = PosMachineProgram.CreateContainer();
             var posMachine = container.Resolve<IPosMachine>();
             var emptyParam = Array.Empty<string>();
-            Assert.Equal("", posMachine.GetReceipt(emptyParam));
-//          Assert.Throws(typeof(System.ArgumentNullException), ()=> posMachine.GetReceipt(emptyParam));
+//            Assert.Equal("", posMachine.GetReceipt(emptyParam));
+          Assert.Throws(typeof(System.ArgumentNullException), ()=> posMachine.GetReceipt(emptyParam));
         }
 
         [Fact]

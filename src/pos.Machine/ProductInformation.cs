@@ -7,7 +7,7 @@
         long Price { get; }
     }
 
-    public class ProductInformation : IProductInformation
+    internal class ProductInformation : IProductInformation
     {
         public string Name { get; set; }
         public string Barcode { get; set; }

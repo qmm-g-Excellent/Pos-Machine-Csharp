@@ -49,6 +49,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtendApi.cs" />
     <Compile Include="PosMachinePrintReceiptTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -8,7 +8,7 @@ namespace pos.Machine
         IProductInformation Get(string barcode);
     }
 
-    public class ProductRepository : IProductRepository
+    internal class ProductRepository : IProductRepository
     {
         public IProductInformation Get(string barcode)
         {

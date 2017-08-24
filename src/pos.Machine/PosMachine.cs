@@ -9,12 +9,15 @@ namespace pos.Machine
          string GetReceipt(string[] items);
     }
 
-    public class PosMachine : IPosMachine
+    internal class PosMachine : IPosMachine
     {
         public string GetReceipt(string[] items)
         {
             if (items.Length < 1)
-                return "";           
+            {
+                throw new ArgumentNullException();
+    
+            }
             Dictionary<string, int> dict = new Dictionary<string, int>();
             foreach (string item in items)
             {
