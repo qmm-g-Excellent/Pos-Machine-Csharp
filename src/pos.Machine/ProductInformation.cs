@@ -7,6 +7,8 @@
         long Price { get; }
     }
 
+    
+
     internal class ProductInformation : IProductInformation
     {
         public string Name { get; set; }
