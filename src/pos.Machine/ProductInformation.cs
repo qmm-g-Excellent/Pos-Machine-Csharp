@@ -7,8 +7,6 @@
         long Price { get; }
     }
 
-    
-
     internal class ProductInformation : IProductInformation
     {
         public string Name { get; set; }
@@ -34,6 +32,7 @@
                     this.Barcode = "ITEM000004";
                     this.Price = 3;
                     break;
+                default: throw new System.FormatException();
             }
         }
     }

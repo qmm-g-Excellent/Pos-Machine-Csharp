@@ -84,7 +84,7 @@ namespace pos.Machine.Test
                       " Total: 3";
             IContainer container = PosMachineProgram.CreateContainer();
             var posMachine = container.Resolve<IPosMachine>();
-            Assert.Throws(typeof(FormatException),()=> posMachine.GetReceipt(new[] { "ITEM000" }));
+            Assert.Throws(typeof(FormatException),()=> posMachine.GetReceipt(new[] { "ITEM000000","ITEM000" }));
         }
 
     }
