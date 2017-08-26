@@ -9,15 +9,14 @@ namespace pos.Machine
         IProductInformation Get(string barcode);
     }
 
-    internal class ProductRepository : IProductRepository
+    internal class ProductRepositroy : IProductRepository
     {
         readonly List<ProductInformation> productRep = new List<ProductInformation>();
-
-        public ProductRepository()
+        public ProductRepositroy()
         {
-            productRep.Add(new ProductInformation("ITEM000000", "Coca Cola", 3));
-            productRep.Add(new ProductInformation("ITEM000001", "Sprite", 3));
-            productRep.Add(new ProductInformation("ITEM000002", "Battery", 3));
+            productRep.Add(new ProductInformation("001", "Coca Cola", 3));
+            productRep.Add(new ProductInformation("002", "Sprite", 3));
+            productRep.Add(new ProductInformation("003", "BAttery", 3));
         }
 
         public IProductInformation Get(string barcode)

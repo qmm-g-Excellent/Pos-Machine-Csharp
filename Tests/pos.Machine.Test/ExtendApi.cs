@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
@@ -6,25 +7,36 @@ using Xunit;
 namespace pos.Machine.Test
 {
     public class ExtendApi
-    {   
+    {
+        public class Student
+        {
+            public int StuId { get; set; }
+            public string ClassName { get; set; }
+            public string StudentName { get; set; }
+        }
+
+
         [Fact]
         public void shoul_filtering_elements_using_where()
         {
 //            use Where() to filter element, the return of Where() execute isn't a array,so it's need to use ToArray()  to generate array,
 //             the most  important is traverse every element to execute that filter fuction of parameter provide just when execute ToArray() function,
-            int[] data = { 1, 2, 3, 4, 5, 6, 8};
+            int[] data = {1, 2, 3, 4, 5, 6, 8};
+
             int[] result = data.Where(n => n % 2 == 0).ToArray();
             int[] expextedResult = {2, 4, 6, 8};
-            Assert.Equal(expextedResult,result);
+            Assert.Equal(expextedResult, result);
         }
 
         [Fact]
         public void should_resoleve_mapping_using_select()
         {
             int[] scores = {45, 56, 63, 76, 83};
+
             //its first params just is index of colection
             //用于处理映射，返回另一种类型的集合，原来集合有多少个元素，则返回的结果依然还是多少个元素
             IEnumerable<String> levels = scores.Select(score => score > 60 ? "PASS" : "REJECT").ToArray().ToArray();
+
             string[] expectedResult = {"REJECT", "REJECT", "PASS", "PASS", "PASS"};
             Assert.Equal(expectedResult, levels);
             //select extend function return type is IEnumerable  //!!!!!!!!!!!! ---> import !!!!
@@ -33,10 +45,12 @@ namespace pos.Machine.Test
         [Fact]
         public void should_get_sum_using_aggregate_with_no_first_param()
         {
-            int[] scores = { 2, 2, 4 };
-            int sum = scores.Aggregate((total, score) =>  total + score);//做聚合，
+            int[] scores = {2, 2, 4};
+            int sum = scores.Aggregate((total, score) => total + score); //做聚合，
+
             //如果第一个不写，默认为第一个元素。
             int expectResult = 8;
+
             Assert.Equal(expectResult, sum);
         }
 
@@ -44,7 +58,9 @@ namespace pos.Machine.Test
         public void should_get_sum_using_aggregate()
         {
             int[] scores = {1, 2, 4};
-            int sum = scores.Aggregate(2, (total, score) =>  total + score);// 第一个参数初始值，如果不写第一个参数，就默认集合中第一个参数是起始值，从第二个元素开始相加
+            int sum = scores.Aggregate(
+                2,
+                (total, score) => total + score); // 第一个参数初始值，如果不写第一个参数，就默认集合中第一个参数是起始值，从第二个元素开始相加
             const int expectResult = 9;
             Assert.Equal(expectResult, sum);
         }
@@ -61,7 +77,9 @@ namespace pos.Machine.Test
                 new Student {ClassName = "软工二班", StudentName = "杨幂", StuId = 5},
                 new Student {ClassName = "软工二班", StudentName = "林依晨", StuId = 6},
             };
+
             var studentGroup = studentList.GroupBy(s => s.ClassName);
+
             var className = studentGroup.First(s => s.Key == "软工一班").ToArray();
 //            foreach (IGrouping<string, Student> item in studentGroup)
 //            {
@@ -73,8 +91,54 @@ namespace pos.Machine.Test
 //            }
 
             Console.WriteLine(studentGroup);
-            Assert.Equal("张三",className[0].StudentName);
+            Assert.Equal("张三", className[0].StudentName);
         }
+
+        [Fact]
+        public void should_get_single_from_net_using_SelectMany()
+        {
+            List<List<int>> numbers = new List<List<int>>()
+            {
+                new List<int> {1, 2, 3},
+                new List<int> {4, 5, 6},
+                new List<int> {7, 8, 9}
+            };
+            IEnumerable<int> result = numbers.SelectMany(col => col);
+            var num = result.Where(n => n % 2 == 0).ToArray();
+            Assert.Equal(new []{2,4,6,8 }, num);
+        }
+
+        [Fact]
+        public void should_take_first_n_elements_using_take()
+        {
+            var number = new[] { 1, 2, 3, 4, 5 };
+
+            IEnumerable<int> filteredElements = number.Take(3);// C#IList取前N行使用Take()方法
+            IEnumerable<int> expectedResult = new[] { 1, 2, 3 };
+
+            Assert.Equal(expectedResult, filteredElements);
+        }
+
+        [Fact]
+        public void should_skip_first_n_elements_using_skip()
+        {
+            var number = new[] { 1, 2, 3, 4, 5 };
+            IEnumerable<int> filteredElements = number.Skip(3);
+            IEnumerable<int> expectedResult = new[] { 4, 5 };
+            Assert.Equal(expectedResult, filteredElements);
+        }
+
+        // need to write test to study extend function following
+//        * SelectMany
+//            * Take/Skip/ TakeWhile/SkipWhile
+//            * Concat
+//        * OrderBy/ThenBy/OrderByDescending/ThenByDescending
+//            * Reverse
+//        * Union/Intersect
+//            * Except
+//        * First/FirstOrDefault/Last/LastOrDefault/Single/SingleOrDefault
     }
+
+    
 
 }
